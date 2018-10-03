@@ -2,9 +2,32 @@
 
 This package mimic the behavior of [`AutoResetEvent`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent) of C#, an acquire-release one semantic.
 
+# Background
+
+Although JavaScript is single-threaded, one might want to limit number of concurrent asynchronous operations. For example, a task that requires multiple asynchronous steps to complete can use this package to limit its concurrency.
+
 # How to use
 
 Run `npm install auto-reset-event`.
+
+## Code snippets
+
+```js
+import createAutoResetEvent from 'auto-reset-event';
+
+// Create an acquire-release queue
+const acquire = createAutoResetEvent();
+
+// Acquire a single lock, this function will not be resolved until the lock is acquired
+const release = await acquire();
+
+// Do the non-parallelized asynchronous work
+
+// Release the lock
+release();
+```
+
+## Full sample
 
 ```js
 import createAutoResetEvent from 'auto-reset-event';
@@ -36,6 +59,41 @@ async function main() {
 }
 
 main().catch(err => console.error(err));
+```
+
+# Samples
+
+`auto-reset-event` can be used to limit concurrency for asynchronous operations.
+
+## Slowing down web traffic for debugging purpose
+
+We can use `auto-reset-event` to easily slow down concurrent requests by limiting its concurrency and serving rate. In this sample, we slowed down serving static content by serving one request every second.
+
+```js
+import { createServer } from 'restify';
+import createAutoResetEvent from 'auto-reset-event';
+import delay from 'delay';
+import serveHandler from 'serve-handler';
+
+const server = createServer();
+const acquireSlowLock = createAutoResetEvent();
+
+server.get('/public/*', async (req, res) => {
+  // If ?slow is added to the URL, we will slow it down by serving one request every second
+  if ('slow' in req.query) {
+    // Make sure it is not cached, so we can replay the slow behavior easily
+    res.noCache();
+
+    const release = await acquireSlowLock();
+
+    await delay(1000);
+    release();
+  }
+
+  await serveHandler(req, res, { path: join(__dirname, './public') });
+});
+
+server.listen(process.env.PORT || 80);
 ```
 
 # Contributions
