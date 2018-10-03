@@ -11,25 +11,25 @@ before_deploy:
   - git config --local user.email "compulim@hotmail.com"
   - npx version-from-git --travis
 
-# deploy:
-#   - provider: npm
-#     api_key:
-#       secure: "F6RF78YwLMgiMCKHX8dYbVSCoOQq6h+RpzysoprWEzx3SXat2mF/7YDYX0A7oQ+1obZZuV5L0SNUIVDjvM2fDzYe/3bjNNZ1O/jIy0o62nb2Hr4tJnDh07UkF5JghRUoUlTc3+GcSWv81jyW0s6YAeU78+U8gwKfQhiiQ4YOwH+tixbfOi0gn5tfTkQyqqaeSGXZMehG4rFoThLfjo184FUkO6WS4vXd8DfSbwtu/GKVDh7HTYluy456AoSZyWcqxqLaIMHU12EmXcecjBpeu2x4WXkrpKKGrGeQ//s/nFjcE7Go5h3Ex9Ywtc+yGNGdFwkMwzLdICzb14Dt1LLzBlozmq/GGCmlbXF6TS/2KM3GejcbbUQ/xb/BtEmmDA0DR/VXHWbiPZJczkmZqNYU5x0XEJkfv/dnVrg6KXO1VCyreflTbFCymwrZRj8CP25xlnPNkRXptOJfUdCmC3tzNan+AGucZ8PdEbLOQm0OjRF5NFTzXC7NW5Q6iE4MHj2hlvHkWScnkmBsx2ITnc3E4PRl/y0xlr/z3ycrwyF19uA4s9yAnWeDiqgenTQpWe4v4zsQtr0VKHt3BGtz+0VZ/5NAyyFR1hod5Q8WMMGkPHj6rpjvFtMYRcVsuDA1C24Nun0qA00wX7Fu9y2pFnv1IKMp5XZk2epdnAsTZxG5ysk="
-#     email: "compulim@hotmail.com"
-#     on:
-#       branch: master
-#     skip_cleanup: true
-#     tag: master
-#   - provider: npm
-#     api_key:
-#       secure: "F6RF78YwLMgiMCKHX8dYbVSCoOQq6h+RpzysoprWEzx3SXat2mF/7YDYX0A7oQ+1obZZuV5L0SNUIVDjvM2fDzYe/3bjNNZ1O/jIy0o62nb2Hr4tJnDh07UkF5JghRUoUlTc3+GcSWv81jyW0s6YAeU78+U8gwKfQhiiQ4YOwH+tixbfOi0gn5tfTkQyqqaeSGXZMehG4rFoThLfjo184FUkO6WS4vXd8DfSbwtu/GKVDh7HTYluy456AoSZyWcqxqLaIMHU12EmXcecjBpeu2x4WXkrpKKGrGeQ//s/nFjcE7Go5h3Ex9Ywtc+yGNGdFwkMwzLdICzb14Dt1LLzBlozmq/GGCmlbXF6TS/2KM3GejcbbUQ/xb/BtEmmDA0DR/VXHWbiPZJczkmZqNYU5x0XEJkfv/dnVrg6KXO1VCyreflTbFCymwrZRj8CP25xlnPNkRXptOJfUdCmC3tzNan+AGucZ8PdEbLOQm0OjRF5NFTzXC7NW5Q6iE4MHj2hlvHkWScnkmBsx2ITnc3E4PRl/y0xlr/z3ycrwyF19uA4s9yAnWeDiqgenTQpWe4v4zsQtr0VKHt3BGtz+0VZ/5NAyyFR1hod5Q8WMMGkPHj6rpjvFtMYRcVsuDA1C24Nun0qA00wX7Fu9y2pFnv1IKMp5XZk2epdnAsTZxG5ysk="
-#     email: "compulim@hotmail.com"
-#     on:
-#       tags: true
-#     skip_cleanup: true
-#   - provider: releases
-#     api_key:
-#       secure: "cJlUHL9x/04mPANekBtNec+PxX4QsMXosapnT+bpxPOZq3u5Wr13OkYvcCjWi3B6u5LVdaxDrqF6xHtotHtT96RCSzmh0r8ffOdLhuJ2dADjlKgMgYCasgXBOnPaWErcVgYUz6vbQ+wzqALx8cmB4cPMAuXOcQmOetfU951ntZIccn47Z6Ddd1lRDG6wxDk+qCGewcHgbs/ic8b0bSJEkBCMdtLbCEv6ODT882HQT3/Jd3HN5oL4E6s57hcsSI+wVLsHILmoCndC5elfHpNxYs2kRxEZXRjWmzIuqLiOueBCk4BXsV2bXWwZdlOD168b8im3+aGSV/XOvkXlivLC5YsyAaQX6SarTsPOPzwZHwKl7A+gdENr15dLLOt6yn8arFTqRLs+mK0aeqNzUK+BU1e+9MyqDh+lq6nI+J5SSUvlfN52ElvnKe1UFUPlUE5RkW9BOosAzpxmzwvpx/EGP6Dkt+8Iw6XhyV5y3ALXcGZhiGqDj7xjZ8sju5cbq82wkOFWOAFNg5oroDRfTVviu74ckQlEpsdoiVH7Igom8xg2ba67dIEt1wJT5HBs1cymmCLlOIBwCF9BCeLTJpBp8hDt0Xi0g42+KeppR78vJ0ObXL1vWGSOs9Wlbu6sbeC1eSEyVQ9vYXFtmW3qM6hnjRfuStttU95r3E8D39FPDYQ="
-#     on:
-#       tags: true
-#     skip_cleanup: true
+deploy:
+  - provider: npm
+    api_key:
+      secure: "NE+hCNdFx5An9+EpTMUrHkykIUuGwZqxOucrGk1I3/cLoQ3zBiU11gZJr0gN2+UnJx+kkKJW0nxlX2V8O89RQI73R5uH8ONzDXDekFxfGs1VlX44iPsFfQHOF+ecmlkXd6fXptF613tCxCJxPeQY8bbLhHOKZ+rv7IMAxVr5LDLRdJZPzjEZE/oAerz0fCaIcd1Xqdi9jg52/T146akZNpl/Uw38IR5f4SYsVg0HaSR2vTFXVYJwkDjoo0+N5dFUOq/t/JBNBV0+fe3LRGCdIOziSClMomUuy2lKB/+48CTX8L6KvC5NWTuKGhlXLK/5peLlvzof4TDVbXgj5bls44NZmFcbJF19+pEDmGapncoQHhL1nslhJay7YCsdDi01MfcQlIVg4uPgeqtkOSYLBLhgeeQBKgX3Jw1DCv+l3wVh2pM5oha6rHpeczjHYoEKwqYLwTCDAhxVl//VdOPLTuGVDCSAtUVN8ckAhdiRARdJ4yLwerQO7rlGMPlsYNcvwAVZ6AoIp+9XfRTxkky0WufI+59rOxswCvz77w0Ti1IXXXuZyUJ1HYfbOeEQofQeU80YU/Kubfi+6Ja3z/nx7atXbBFyt1Nj29RUlbCe2jEPgrN+H3qw/elVQB2ssuAMu0KtNF6q4JAXt1YfYK398+aFCpVKeCq7NdBL5qX6Qso="
+    email: "compulim@hotmail.com"
+    on:
+      branch: master
+    skip_cleanup: true
+    tag: master
+  - provider: npm
+    api_key:
+      secure: "NE+hCNdFx5An9+EpTMUrHkykIUuGwZqxOucrGk1I3/cLoQ3zBiU11gZJr0gN2+UnJx+kkKJW0nxlX2V8O89RQI73R5uH8ONzDXDekFxfGs1VlX44iPsFfQHOF+ecmlkXd6fXptF613tCxCJxPeQY8bbLhHOKZ+rv7IMAxVr5LDLRdJZPzjEZE/oAerz0fCaIcd1Xqdi9jg52/T146akZNpl/Uw38IR5f4SYsVg0HaSR2vTFXVYJwkDjoo0+N5dFUOq/t/JBNBV0+fe3LRGCdIOziSClMomUuy2lKB/+48CTX8L6KvC5NWTuKGhlXLK/5peLlvzof4TDVbXgj5bls44NZmFcbJF19+pEDmGapncoQHhL1nslhJay7YCsdDi01MfcQlIVg4uPgeqtkOSYLBLhgeeQBKgX3Jw1DCv+l3wVh2pM5oha6rHpeczjHYoEKwqYLwTCDAhxVl//VdOPLTuGVDCSAtUVN8ckAhdiRARdJ4yLwerQO7rlGMPlsYNcvwAVZ6AoIp+9XfRTxkky0WufI+59rOxswCvz77w0Ti1IXXXuZyUJ1HYfbOeEQofQeU80YU/Kubfi+6Ja3z/nx7atXbBFyt1Nj29RUlbCe2jEPgrN+H3qw/elVQB2ssuAMu0KtNF6q4JAXt1YfYK398+aFCpVKeCq7NdBL5qX6Qso="
+    email: "compulim@hotmail.com"
+    on:
+      tags: true
+    skip_cleanup: true
+  - provider: releases
+    api_key:
+      secure: "KxnvpQy++iclC2C6lEiirlnAW50Em0rlqe2D3jXgBxqVElWj3vg0ESUYaBPzxetpSvw62cy22vn9mQX3Fpgty4IolIY9hq4pJoNrdHWp554Zw3kHVODVh4bcmoGNLSiEVrggzsnvUKAVBYPK8x0ezMrcNwSXngnJLoiVPZ3R1O8l3f3+Br11x5QIUigZE9h/5gwSzT35wDw1HmayACvntulpg9UYTNbhzuVRk87tABX7G+xlXNcwg3sxe0oqqshj2hZ414KqLJyMy6mLmT8vdaQAuWa8h4TEUOyJtAglOXdI+PKmtbUOd73qQw0JWix+Rb2fUY9gM43mnMfZmFROJVyFflBlMJ7BygEqsEMQrQ+LssKhEJPPuf7yWGXINBH7qpEvWjS7wQpq0k/XMY47atHU8ECUtVo1ide3KnCcd7GmBdXMjzmTYEiU9D3ymYmudDGYdZK7dhIJeYjM9e5fYIiruBXwo62OIrW4BLXNuE8nJpJxWeUB/fg9Cue1FEJf8YGpVwmCoo+XHmt1/ZHz6/Kt8tfsAX5zpY+o4/VyZoaJjzjK3JLDzZouKUV/8xIgwVn+HCU8vweS5Ek8pjzlIusCtyowXFPvSstS6xlhVvrInyzczsRj5IjvAbDXddUzpqDIedkUzJmVoT1aGJ08zd1+j+PWEKqSKCc55ZY6A4E="
+    on:
+      tags: true
+    skip_cleanup: true
