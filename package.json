@@ -1,0 +1,41 @@
+{
+  "name": "auto-reset-event",
+  "version": "0.0.0-0",
+  "description": "An acquire-release one semantic implemented in Promise.",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel --ignore **/*.spec.js,**/*.test.js,__tests__ --out-dir lib src",
+    "test": "jest",
+    "watch": "npm run build -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compulim/auto-reset-event.git"
+  },
+  "keywords": [
+    "auto reset event",
+    "promise",
+    "semaphore"
+  ],
+  "author": "William Wong <compulim@hotmail.com> (http://compulim.info/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compulim/auto-reset-event/issues"
+  },
+  "homepage": "https://github.com/compulim/auto-reset-event#readme",
+  "dependencies": {
+    "p-defer": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/runtime": "^7.1.2",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "delay": "^4.0.1",
+    "has-resolved": "^1.0.1",
+    "jest": "^23.6.0"
+  }
+}
