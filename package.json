@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/compulim/auto-reset-event#readme",
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
     "p-defer": "^1.0.0"
   },
   "devDependencies": {
@@ -31,7 +32,6 @@
     "@babel/core": "^7.1.2",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
-    "@babel/runtime": "^7.1.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "delay": "^4.0.1",
