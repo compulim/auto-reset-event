@@ -2,6 +2,8 @@
 
 This package mimic the behavior of [`AutoResetEvent`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent) of C#, an acquire-release one semantic.
 
+[![npm version](https://badge.fury.io/js/auto-reset-event.svg)](https://badge.fury.io/js/auto-reset-event) [![Build Status](https://travis-ci.org/compulim/auto-reset-event.svg?branch=master)](https://travis-ci.org/compulim/auto-reset-event)
+
 # Background
 
 Although JavaScript is single-threaded, one might want to limit number of concurrent asynchronous operations. For example, a task that requires multiple asynchronous steps to complete can use this package to limit its concurrency.
