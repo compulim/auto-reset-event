@@ -28,14 +28,15 @@
     "p-defer": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "delay": "^4.0.1",
-    "has-resolved": "^1.0.1",
-    "jest": "^23.6.0"
+    "babel-jest": "^24.8.0",
+    "delay": "^4.3.0",
+    "has-resolved": "^1.1.0",
+    "jest": "^24.8.0",
+    "regenerator-runtime": "^0.13.2"
   }
 }

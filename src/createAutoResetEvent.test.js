@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import hasResolved from 'has-resolved';
 
 import createAutoResetEvent from './createAutoResetEvent';
