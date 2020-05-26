@@ -1,6 +1,6 @@
 {
   "name": "auto-reset-event",
-  "version": "1.1.0",
+  "version": "1.1.1-0",
   "description": "An acquire-release one semantic implemented in Promise.",
   "main": "lib/index.js",
   "scripts": {
