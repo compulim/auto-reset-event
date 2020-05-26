@@ -4,9 +4,10 @@
   "description": "An acquire-release one semantic implemented in Promise.",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel --ignore **/*.spec.js,**/*.test.js,__tests__ --out-dir lib src",
-    "test": "jest",
-    "watch": "npm run build -- --watch"
+    "build": "babel --out-dir lib src --ignore **/*.spec.js,**/*.test.js",
+    "prestart": "npm run build:babel",
+    "start": "npm run build:babel -- --skip-initial-build --watch",
+    "test": "jest --collectCoverage true"
   },
   "repository": {
     "type": "git",
@@ -24,19 +25,21 @@
   },
   "homepage": "https://github.com/compulim/auto-reset-event#readme",
   "dependencies": {
-    "@babel/runtime": "^7.1.2",
-    "p-defer": "^1.0.0"
+    "@babel/runtime": "7.9.6",
+    "p-defer": "3.0.0",
+    "p-defer-es5": "1.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
     "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^24.8.0",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^26.0.1",
+    "babel-plugin-add-module-exports": "^1.0.2",
     "delay": "^4.3.0",
     "has-resolved": "^1.1.0",
-    "jest": "^24.8.0",
-    "regenerator-runtime": "^0.13.2"
+    "jest": "^26.0.1",
+    "regenerator-runtime": "^0.13.5"
   }
 }
