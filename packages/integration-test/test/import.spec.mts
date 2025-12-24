@@ -1,7 +1,8 @@
-import 'regenerator-runtime/runtime';
-import hasResolved from 'has-resolved';
+import { expect } from 'expect';
+import { test } from 'node:test';
+import { hasResolved } from 'has-resolved';
 
-import createAutoResetEvent from './createAutoResetEvent';
+import { createAutoResetEvent } from 'auto-reset-event';
 
 test('should acquire one at a time', async () => {
   const acquire = createAutoResetEvent();

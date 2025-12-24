@@ -2,7 +2,24 @@
   "name": "auto-reset-event",
   "version": "0.0.0-0",
   "description": "An acquire-release one semantic implemented in Promise.",
+  "files": [
+    "./*.js",
+    "./dist/"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/auto-reset-event.d.mts",
+        "default": "./dist/auto-reset-event.mjs"
+      },
+      "require": {
+        "types": "./dist/auto-reset-event.d.ts",
+        "default": "./dist/auto-reset-event.js"
+      }
+    }
+  },
   "main": "./dist/auto-reset-event.js",
+  "typings": "./dist/auto-reset-event.d.ts",
   "scripts": {
     "build": "tsup",
     "bump": "npm run bump:prod && npm run bump:dev",
@@ -16,7 +33,7 @@
     "prepack": "cp ../../CHANGELOG.md . && cp ../../LICENSE . && cp ../../README.md .",
     "start": "npm run build -- --onSuccess \"touch ../pages/package.json\" --watch",
     "switch": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
-    "test": "node --import ./happy-dom-env.ts --test ${CI:---watch} **/*.{spec,test}.{[jt]s,[jt]sx,c[jt]s,m[jt]s}"
+    "test": "node --test ${CI:---watch} **/*.{spec,test}.{[jt]s,[jt]sx,c[jt]s,m[jt]s}"
   },
   "repository": {
     "type": "git",
@@ -34,11 +51,13 @@
   },
   "homepage": "https://github.com/compulim/auto-reset-event#readme",
   "devDependencies": {
-    "has-resolved": "^1.1.0"
-  },
-  "files": [
-    "./*.js",
-    "./dist/"
-  ],
-  "typings": "./dist/auto-reset-event.d.ts"
+    "@tsconfig/recommended": "^1.0.13",
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/node": "^25.0.3",
+    "expect": "^30.2.0",
+    "has-resolved": "^2.0.0",
+    "publint": "^0.3.16",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
 }
