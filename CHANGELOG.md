@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [2.0.0] - 2025-12-24
 
 ### Changed
 
@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - [`eslint-plugin-react@7.37.5`](https://npmjs.com/package/eslint-plugin-react/v/7.37.5)
     - [`prettier@3.7.4`](https://npmjs.com/package/prettier/v/3.7.4)
 
-## 1.1.0 - 2020-05-26
+## [1.1.0] - 2020-05-26
 
 ### Changed
 
@@ -52,8 +52,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    - [jest@^24.8.0](https://www.npmjs.com/package/jest)
    - [regenerator-runtime@^0.13.2](https://www.npmjs.com/package/regenerator-runtime)
 
-## 1.0.0 - 2018-10-03
+## [1.0.0] - 2018-10-03
 
 ### Added
 
 - Initial public release
+
+[2.0.0]: https://github.com/compulim/auto-reset-event/compare/v1.1.0...v2.0.0
+[1.1.0]: https://github.com/compulim/auto-reset-event/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/compulim/auto-reset-event/releases/tag/v1.0.0
