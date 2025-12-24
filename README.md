@@ -15,7 +15,7 @@ Run `npm install auto-reset-event`.
 ## Code snippets
 
 ```js
-import createAutoResetEvent from 'auto-reset-event';
+import { createAutoResetEvent } from 'auto-reset-event';
 
 // Create an acquire-release queue
 const acquire = createAutoResetEvent();
@@ -32,7 +32,7 @@ release();
 ## Full sample
 
 ```js
-import createAutoResetEvent from 'auto-reset-event';
+import { createAutoResetEvent } from 'auto-reset-event';
 import delay from 'delay';
 
 async function main() {
@@ -73,7 +73,7 @@ We can use `auto-reset-event` to easily slow down concurrent requests by limitin
 
 ```js
 import { createServer } from 'restify';
-import createAutoResetEvent from 'auto-reset-event';
+import { createAutoResetEvent } from 'auto-reset-event';
 import delay from 'delay';
 import serveHandler from 'serve-handler';
 

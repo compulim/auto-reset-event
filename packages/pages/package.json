@@ -10,9 +10,6 @@
     "bump": "npm run bump:prod && npm run bump:dev",
     "bump:dev": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.devDependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
     "bump:prod": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.dependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
-    "init": "npm run init:dev && npm run init:prod",
-    "init:dev": "npm install --save-dev @tsconfig/strictest @types/react @types/react-dom esbuild typescript",
-    "init:prod": "npm install --save auto-reset-event@0.0.0-0 react react-dom",
     "precommit": "npm run precommit:eslint && npm run precommit:typescript",
     "precommit:eslint": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./src/",
     "precommit:typescript": "tsc --project ./src/tsconfig.json",
@@ -25,6 +22,15 @@
     "auto-reset-event": "0.0.0-0"
   },
   "devDependencies": {
-    "auto-reset-event": "0.0.0-0"
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "auto-reset-event": "0.0.0-0",
+    "esbuild": "^0.27.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   }
 }

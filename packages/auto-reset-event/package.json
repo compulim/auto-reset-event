@@ -2,16 +2,42 @@
   "name": "auto-reset-event",
   "version": "0.0.0-0",
   "description": "An acquire-release one semantic implemented in Promise.",
-  "main": "lib/index.js",
+  "files": [
+    "./*.js",
+    "./dist/"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/auto-reset-event.d.mts",
+        "default": "./dist/auto-reset-event.mjs"
+      },
+      "require": {
+        "types": "./dist/auto-reset-event.d.ts",
+        "default": "./dist/auto-reset-event.js"
+      }
+    }
+  },
+  "main": "./dist/auto-reset-event.js",
+  "typings": "./dist/auto-reset-event.d.ts",
   "scripts": {
-    "build": "babel --out-dir lib src --ignore **/*.spec.js,**/*.test.js",
-    "prestart": "npm run build:babel",
-    "start": "npm run build:babel -- --skip-initial-build --watch",
-    "test": "jest --collectCoverage true"
+    "build": "tsup",
+    "bump": "npm run bump:prod && npm run bump:dev",
+    "bump:dev": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.devDependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
+    "bump:prod": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.dependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
+    "precommit": "npm run precommit:eslint && npm run precommit:publint && npm run precommit:typescript:production && npm run precommit:typescript:test",
+    "precommit:eslint": "ESLINT_USE_FLAT_CONFIG=false eslint ./src/",
+    "precommit:publint": "publint",
+    "precommit:typescript:production": "tsc --noEmit --project ./src/tsconfig.precommit.production.json",
+    "precommit:typescript:test": "tsc --noEmit --project ./src/tsconfig.precommit.test.json",
+    "prepack": "cp ../../CHANGELOG.md . && cp ../../LICENSE . && cp ../../README.md .",
+    "start": "npm run build -- --onSuccess \"touch ../pages/package.json\" --watch",
+    "switch": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
+    "test": "node --test ${CI:---watch} **/*.{spec,test}.{[jt]s,[jt]sx,c[jt]s,m[jt]s}"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/compulim/auto-reset-event.git"
+    "url": "https://github.com/compulim/auto-reset-event.git"
   },
   "keywords": [
     "auto reset event",
@@ -25,6 +51,13 @@
   },
   "homepage": "https://github.com/compulim/auto-reset-event#readme",
   "devDependencies": {
-    "has-resolved": "^1.1.0"
+    "@tsconfig/recommended": "^1.0.13",
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/node": "^25.0.3",
+    "expect": "^30.2.0",
+    "has-resolved": "^2.0.0",
+    "publint": "^0.3.16",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }
