@@ -1,45 +1,39 @@
 {
-  "name": "auto-reset-event",
+  "name": "@compulim/auto-reset-event-root",
   "version": "1.1.1-0",
-  "description": "An acquire-release one semantic implemented in Promise.",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "babel --out-dir lib src --ignore **/*.spec.js,**/*.test.js",
-    "prestart": "npm run build:babel",
-    "start": "npm run build:babel -- --skip-initial-build --watch",
-    "test": "jest --collectCoverage true"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/compulim/auto-reset-event.git"
-  },
-  "keywords": [
-    "auto reset event",
-    "promise",
-    "semaphore"
-  ],
-  "author": "William Wong <compulim@hotmail.com> (http://compulim.info/)",
+  "description": "",
+  "private": true,
+  "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/compulim/auto-reset-event/issues"
+  "workspaces": [
+    "packages/auto-reset-event",
+    "packages/integration-test",
+    "packages/pages"
+  ],
+  "scripts": {
+    "build": "npm run build --if-present --workspaces",
+    "bump": "npm run bump:prod && npm run bump:dev && npm run bump:packages && npm run bump:eslintrc",
+    "bump:dev": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.devDependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
+    "bump:eslintrc": "if [ -f node_modules/react/package.json ]; then docker run -e VERSION=$(cat node_modules/react/package.json | jq -r '.version') -i --rm mikefarah/yq '.settings.react.version = strenv(VERSION)' < ./.eslintrc.react.yml | tee /tmp/output.tmp && mv /tmp/output.tmp ./.eslintrc.react.yml; fi",
+    "bump:packages": "npm run bump --if-present --workspaces",
+    "bump:prod": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.dependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
+    "postscaffold": "npm run postscaffold:eslint:react && npm run postscaffold --if-present --workspaces",
+    "postscaffold:eslint:react": "npm run bump:eslintrc",
+    "precommit": "npm run precommit --if-present --workspaces",
+    "switch:_": "npm run --if-present --workspaces switch && npm install --legacy-peer-deps --prefer-dedupe",
+    "test": "npm run test --if-present --workspaces"
   },
-  "homepage": "https://github.com/compulim/auto-reset-event#readme",
-  "dependencies": {
-    "@babel/runtime": "7.9.6",
-    "p-defer": "3.0.0",
-    "p-defer-es5": "1.0.1"
+  "pinDependencies": {
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
-    "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.9.6",
-    "babel-jest": "^26.0.1",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "delay": "^4.3.0",
-    "has-resolved": "^1.1.0",
-    "jest": "^26.0.1",
-    "regenerator-runtime": "^0.13.5"
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "eslint": "^8.57.1",
+    "eslint-import-resolver-node": "^0.3.9",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.1",
+    "prettier": "^3.3.3"
   }
 }
