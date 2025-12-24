@@ -1,0 +1,23 @@
+name: Continuous deployment
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.github/**'
+  workflow_dispatch: {}
+
+jobs:
+  call-workflow:
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
+      pages: write
+    secrets:
+      WORKFLOW_BOT_APP_ID: ${{ secrets.WORKFLOW_BOT_APP_ID }}
+      WORKFLOW_BOT_PRIVATE_KEY: ${{ secrets.WORKFLOW_BOT_PRIVATE_KEY }}
+    uses: compulim/workflows/.github/workflows/continuous-deployment-oidc.yml@main
+    with:
+      package-name: 'auto-reset-event'
